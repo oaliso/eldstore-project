@@ -1,0 +1,48 @@
+h3{
+    font-weight: bold;
+    color: #EB8124;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.print-label{
+    color: black;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box-card-quantity{
+    border: transparent;
+    border: 0;
+    padding-top: 6%;
+    width: 25rem;
+    height: 9rem;
+    background-color: #BE7230;
+    margin-bottom: 45px;
+}
+
+.box-card-panelcontrol{
+    border: transparent;
+    border: 0;
+    width: 25rem;
+    height: 6rem;
+    margin-bottom: 10px;
+}
+
+.print-btn{
+    width: 25rem;
+    height: 4rem;
+    border: transparent;
+    border: 0;
+    background-color: #E1DDDD;
+}
+
+
+/* Remover caso encontrar opções */
+.total{
+    margin-top: 60pt;
+}
+
+.col{
+    padding-left: 130px;
+    
+}
