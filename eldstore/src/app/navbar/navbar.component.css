@@ -40,6 +40,8 @@
     cursor: pointer;
     padding: 10px 15px;
     border-radius: 10px;
+    list-style-type: none;
+    text-decoration: none;
   }
   
   .nav-button:hover {
@@ -53,6 +55,8 @@
     border: none;
     padding: 10px 20px;
     border-radius: 10px; 
+    list-style-type: none;
+    text-decoration: none;
   }
   
   .nav-button-novo:hover {
