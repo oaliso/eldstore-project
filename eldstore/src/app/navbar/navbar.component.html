@@ -4,22 +4,38 @@
     <!-- <span>LOGO</span> -->
   </div>
 
-  <nav class="navbar-links">
+  <div class="navbar-links">
 
-      <li class="nav-button">
-        <a class="nav-button" routerLink="/home">home</a>
+      <li class="nav-button" routerLinkActive="activebutton" >
+        <i class="bi bi-house-fill"></i>
+        <span>
+          <a class="nav-button" routerLink="/home">Home</a>
+        </span>
+      </li>
+
+      <li class="nav-button" routerLinkActive="activebutton">
+        <i class="bi bi-reception-4"></i>
+        <span>
+          <a class="nav-button" routerLink="/dashboard">Dashboard</a>
+        </span>
+      </li>
+
+      <li class="nav-button-novo" >
+        
+        <i class="bi bi-plus-circle"></i>
+        <span>
+          <a class="nav-button-novo" routerLink="/register" > Novo Produto </a>
+        </span>
+        
       </li>
 
       <li class="nav-button">
-        <a class="nav-button" routerLink="/dashboard">Dashboard</a>
+        <i class="nav-icon bi bi-box-arrow-in-left "></i>
+        <span>
+          <a class="nav-button">Sair</a>
+        </span>
       </li>
-
-      <li class="nav-button-novo">
-        <a class="nav-button-novo" routerLink="/register" > + Novo Produto </a>
-      </li>
-
-      <button class="nav-button">Sair</button>
-  </nav>
+  </div>
 
 </div>
 
