@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { HomeComponent } from "./home/home.component";
+import { EditComponent } from './edit/edit.component';
 
 @Component({
   selector: 'app-root',
