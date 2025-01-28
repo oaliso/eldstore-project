@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-
+    quantity = 1500
 }
