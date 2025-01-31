@@ -1,0 +1,28 @@
+<div class="table-container">
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Produto Cadastrado</th>
+          <th>Quantidade</th>
+          <th>Código</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td class="product-cell">
+            
+            <button class="btn-edit">
+              <i class="bi bi-pencil-fill"></i>
+              <i class="bi bi-trash-fill"></i>
+              
+            </button>
+            {{ produto.nome }}
+          </td>
+          <td>{{ produto.quantidade }}</td>
+          <td><button class="btn-code">|||</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>     
