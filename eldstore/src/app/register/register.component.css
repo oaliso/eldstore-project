@@ -1,49 +1,144 @@
 .home {
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    margin-top: 50px;
-  }
-  
-  .box {
-    width: 1100px; 
-    height: 500px;
-    background-color: rgb(255, 255, 255); 
-    border-radius: 10px; 
-    box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.2); 
-    flex-direction: column;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;
-  }
-
-  .text{
-    margin-top: 10px;
-    color: #EB8124;
-    font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+ .box {
+  width: 1100px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-  .container{
-    margin-top: 15px;
-    width: 1055px; 
-    height: 330px;
-    background-color: #EB8124;
-    border-radius: 10px; 
-  }
 
-  .button-save{
-    margin-top: 10px;
-    width: 400px; 
-    height: 54px;
-    font-size: 36px;
-    background-color: rgb(from #EB8124 r g b);
-    border-radius: 10px; 
-    box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.2);     color: white;
-    border: none;
-    cursor: pointer;
+.text{
+  margin-top: 10px;
+  color: #EB8124;
+  font-size: 48px;
 }
+
+
+.container{
+  margin-top: 15px;
+  width: 1055px;
+  height: 330px;
+  background-color: #EB8124;
+  border-radius: 10px;
+  display: flex;
+  gap: 25px;
+}
+
+
+.container-produto{
+  flex-direction: column;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.h4{
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #FAFAFA;
+  font-size: 30px;
+}
+
+.produto-box{
+  width: 500px;
+  height: 62px;
+  background-color: #FAFAFA;
+  border: none;
+  border-radius: 10px;
+}
+
+.quant-container{
+  display: flex;
+  gap: 10px;
+}
+
+.quant-box{
+  width: 304px;
+  height: 62px;
+  background-color: #FAFAFA;
+  border: none;
+  border-radius: 10px;
+}
+
+.button-quant{
+  width: 88px;
+  height: 62px;
+  font-size: 36px;
+  background-color: rgb(from #FAFAFA r g b);
+  border-radius: 10px;
+  box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.2);     
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.button-quant:hover {
+  background-color: #cfcfcf;
+}
+
+.container-cod{
+  align-items: center; 
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  margin-left: 90px;
+}
+
+.cod{
+  margin: 10px;
+  width: 330px;
+  height: 113px;
+  background-color: #FAFAFA;
+}
+
+.cod-descri{
+  width: 330px;
+  height: 55px;
+  border-radius: 10px;
+  background-color: #FAFAFA;
+}
+
+.button-cod{
+  margin: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 22px;
+  background-color: rgb(from #FAFAFA r g b);
+  border-radius: 10px;
+  box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.2);     
+  color: #EB8124;
+  border: none;
+  cursor: pointer;
+}
+
+.button-cod:hover {
+  background-color: #cfcfcf;
+}
+
+.button-save{
+  margin-top: 10px;
+  width: 400px;
+  height: 54px;
+  font-size: 36px;
+  background-color: rgb(from #EB8124 r g b);
+  border-radius: 10px;
+  box-shadow: 8px 6px 10px rgba(0, 0, 0, 0.2);     
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 
 .button-save:hover {
-    background-color: #d46f20;
+  background-color: #d46f20;
 }
