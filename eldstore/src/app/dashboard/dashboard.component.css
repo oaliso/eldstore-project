@@ -1,8 +1,12 @@
+/* CSS FOR TITLES */
+
 h3{
     font-weight: bold;
     color: #EB8124;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* CSS FOR PDF BUTTON */
 
 .print-label{
     color: black;
@@ -10,31 +14,81 @@ h3{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.print-btn{
+    width: 25rem;
+    height: 4rem;
+    border: transparent;
+    border: 0;
+    color: black;
+    font-family: "Inter", serif;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #E1DDDD;
+
+    .download-icon{
+        padding-left: 20px;
+    }
+}
+
+/* CSS FOR QUANTITY BOX */
+
 .box-card-quantity{
     border: transparent;
     border: 0;
-    padding-top: 6%;
     width: 25rem;
     height: 9rem;
     background-color: #BE7230;
     margin-bottom: 45px;
 }
 
+.label-total{
+    font-family: "Inter", serif;
+    font-weight: bold;
+    color: white;
+    padding-left: 40px;
+    padding-top: 35px;
+    font-size: 50px;
+
+    .box-icon{
+        padding-left: 20px;
+    }
+}
+
+/* CSS FOR STORAGE PANEL CONTROL*/
+
 .box-card-panelcontrol{
     border: transparent;
+    background-color: orangered;
     border: 0;
     width: 25rem;
     height: 6rem;
     margin-bottom: 10px;
+    text-decoration: none;
 }
 
-.print-btn{
-    width: 25rem;
-    height: 4rem;
-    border: transparent;
-    border: 0;
-    background-color: #E1DDDD;
+.panelcontrol-title-label{
+    color: white;
+    font-family: "Inter", serif;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    padding-left: 20px;
+    font-size: 20px;
 }
+
+.panelcontrol-container-label{
+    color: white;
+    font-family: "Inter", serif;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    margin-top: -10px;
+    padding-left: 20px;
+    font-size: 35px;
+}
+
+
+
 
 
 /* Remover caso encontrar opções */
