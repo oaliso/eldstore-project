@@ -15,7 +15,7 @@
 
 
 .logo-img {
-  width: 40px; 
+  width: 150px; 
   height: auto; 
   object-fit: contain; 
 }
@@ -51,9 +51,10 @@
   
   .nav-button-novo {
     background-color: white;
+    
     color: #f37c23; 
     font-size: 22px;
-    font-weight: bold;
+    font-weight: 900;
     border: none;
     padding: 10px 20px;
     border-radius: 10px; 
