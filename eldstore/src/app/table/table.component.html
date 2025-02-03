@@ -12,11 +12,13 @@
         <tr *ngFor="let produto of produtos">
           <td class="product-cell">
             
-            <button class="btn-edit">
-              <i class="bi bi-pencil-fill"></i>
-              <i class="bi bi-trash-fill"></i>
-              
-            </button>
+            <a routerLink="/edit">
+              <button class="btn-edit">
+                <i class="bi bi-pencil-fill"></i>
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </a>  
+            
             {{ produto.nome }}
           </td>
           <td>{{ produto.quantidade }}</td>

@@ -30,6 +30,10 @@ h3{
     }
 }
 
+.print-btn:hover{
+    background-color: #9f9d9d;
+}
+
 /* CSS FOR QUANTITY BOX */
 
 .box-card-quantity{
@@ -58,12 +62,36 @@ h3{
 
 .box-card-panelcontrol{
     border: transparent;
-    background-color: orangered;
     border: 0;
     width: 25rem;
     height: 6rem;
     margin-bottom: 10px;
     text-decoration: none;
+
+}
+
+.box-good{
+    background-color: #A2AF2D;
+}
+
+.box-good:hover{
+    background-color: #859024;
+}
+
+.box-so-so{
+    background-color: #F1B941;
+}
+
+.box-so-so:hover{
+    background-color: #b1872e;
+}
+
+.box-bad{
+    background-color: #C01D07;
+}
+
+.box-bad:hover{
+    background-color: #951807;
 }
 
 .panelcontrol-title-label{

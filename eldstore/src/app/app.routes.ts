@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { EditComponent } from './edit/edit.component';
+import { TableDashboardComponent } from './table-dashboard/table-dashboard.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -10,7 +11,7 @@ export const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'edit', component: EditComponent},
-    // {path: 'acimadamedia', component: AdmComponent},
+    {path: 'table-dashboard', component: TableDashboardComponent},
     // {path: 'abaixodamedia', component: DdmComponent},
     // {path: 'esgotado', component: LowComponent}
 ];
