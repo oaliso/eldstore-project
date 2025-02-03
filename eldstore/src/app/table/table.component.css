@@ -1,0 +1,68 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+.table-scroll {
+  max-height: 300px; 
+  overflow-y: auto; 
+}
+
+
+table {
+  width: 950px;
+  border-collapse: collapse;
+  margin: auto; 
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center; 
+}
+
+th {
+  background-color: white; 
+  border: 2px solid #f37c23;
+  color: #f37c23;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  justify-content: flex-start; 
+  text-align: left; 
+}
+
+
+.btn-edit {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-action:hover {
+  background-color: #f0f0f0;
+}
+
+
+.btn-code {
+  background-color: #f37c23;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.btn-code:hover {
+  background-color: #aa5e02;
+}  
