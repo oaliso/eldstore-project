@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-table-dashboard',
-  imports: [],
+  imports: [SearchBarComponent, TableComponent ],
   templateUrl: './table-dashboard.component.html',
   styleUrl: './table-dashboard.component.css'
 })

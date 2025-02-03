@@ -1,3 +1,5 @@
+
+
 .table-container {
   display: flex;
   justify-content: center;
@@ -7,12 +9,12 @@
 
 .table-scroll {
   max-height: 300px; 
-  overflow-y: auto; 
+  overflow-y:auto;
 }
 
 
 table {
-  width: 950px;
+  width: 880px;
   border-collapse: collapse;
   margin: auto; 
 }
@@ -21,14 +23,6 @@ th, td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: center; 
-}
-
-th {
-  background-color: white; 
-  border: 2px solid #f37c23;
-  color: #f37c23;
-  font-weight: bold;
-  text-align: center;
 }
 
 
@@ -66,3 +60,38 @@ th {
 .btn-code:hover {
   background-color: #aa5e02;
 }  
+
+
+
+.header-todos {
+  background-color: white; 
+  border: 3px solid #f37c23;
+  color: #f37c23;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header-abastecido {
+  background-color: white; 
+  border: 3px solid #859024;
+  color: #859024;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header-critico {
+  background-color: white; 
+  border: 3px solid #F1B941;
+  color: #F1B941;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.header-esgotado {
+  background-color: white; 
+  border: 3px solid #C01D07;
+  color: #C01D07;
+  font-weight: bold;
+  text-align: center;
+}

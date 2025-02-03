@@ -1,24 +1,22 @@
 <div class="table-container">
   <div class="table-scroll">
     <table>
-      <thead>
+      <thead >
         <tr>
-          <th>Produto Cadastrado</th>
-          <th>Quantidade</th>
-          <th>Código</th>
+          <th [ngClass]="getHeaderClass()">Produto Cadastrado</th>
+          <th [ngClass]="getHeaderClass()">Quantidade</th>
+          <th [ngClass]="getHeaderClass()">Código</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let produto of produtos">
+        <tr *ngFor="let produto of filteredProducts">
           <td class="product-cell">
-            
             <a routerLink="/edit">
               <button class="btn-edit">
                 <i class="bi bi-pencil-fill"></i>
                 <i class="bi bi-trash-fill"></i>
               </button>
-            </a>  
-            
+            </a>
             {{ produto.nome }}
           </td>
           <td>{{ produto.quantidade }}</td>
@@ -27,4 +25,4 @@
       </tbody>
     </table>
   </div>
-</div>     
+</div>
