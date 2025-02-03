@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SearchBarComponent],
 })
 export class TableComponent implements OnInit {
-  filterType: string = '';
-  
+  filterType: string = ''; 
+  searchText: string = ''; 
   produtos = [
     { nome: 'Arroz branco', quantidade: 50 },
     { nome: 'Açúcar', quantidade: 45 },
@@ -36,24 +37,43 @@ export class TableComponent implements OnInit {
     { nome: 'Papel higiênico', quantidade: 100 },
   ];
 
-
   ngOnInit(): void {
-    // Pega o'filter' da URL
+    //'filter' da URL
     this.filterType = this.route.snapshot.queryParams['filter'] || '';
   }
 
   constructor(private route: ActivatedRoute) {}
 
-  // Filtra 
-  get filteredProducts() {
-    if (this.filterType === 'abastecido') {
-      return this.produtos.filter((produto) => produto.quantidade > 50);
-    } else if (this.filterType === 'critico') {
-      return this.produtos.filter((produto) => produto.quantidade <= 50 && produto.quantidade > 0);
-    } else if (this.filterType === 'esgotado') {
-      return this.produtos.filter((produto) => produto.quantidade === 0);
+  //pesquisa vazia
+  updateSearchText(newSearchText: string): void {
+    this.searchText = newSearchText;
+  
+    if (!this.searchText) {
+      this.filterType = ''; // Reseta 
     }
-    return this.produtos; // tabela toda
+  }
+
+  
+  get filteredProducts() {
+    let filtered = this.produtos;
+
+    //tipo
+    if (this.filterType === 'abastecido') {
+      filtered = filtered.filter((produto) => produto.quantidade > 50);
+    } else if (this.filterType === 'critico') {
+      filtered = filtered.filter((produto) => produto.quantidade <= 50 && produto.quantidade > 0);
+    } else if (this.filterType === 'esgotado') {
+      filtered = filtered.filter((produto) => produto.quantidade === 0);
+    }
+
+    //pesquisa
+    if (this.searchText) {
+      filtered = filtered.filter((produto) =>
+        produto.nome.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
+
+    return filtered;
   }
 
   getHeaderClass() {
@@ -68,7 +88,4 @@ export class TableComponent implements OnInit {
         return 'header-todos';
     }
   }
-  
-
-
 }

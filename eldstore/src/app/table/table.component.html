@@ -1,7 +1,9 @@
+<app-search-bar (searchTextChanged)="updateSearchText($event)"></app-search-bar>
+
 <div class="table-container">
   <div class="table-scroll">
     <table>
-      <thead >
+      <thead>
         <tr>
           <th [ngClass]="getHeaderClass()">Produto Cadastrado</th>
           <th [ngClass]="getHeaderClass()">Quantidade</th>
