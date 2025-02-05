@@ -4,20 +4,19 @@
         <div class="container">
             <div class="container-produto">
                 <h4 class="h4">Nome</h4>
-                <textarea name="name" id="name-prouto" class="produto-box"></textarea>
-
+                <input class="produto-box"/>
                 <h4 class="h4" style="margin-top: 30px;">Quantidade</h4>
                 <div class="quant-container">
-                    <textarea name="quantidade" id="quant-produto" class="quant-box"></textarea>
-                    <button class="button-quant">+</button>
-                    <button class="button-quant">-</button>
+                    <input type="number" [value]="contador" readonly class="quant-box"/>
+                    <button (click)="somar()" class="button-quant">+</button>
+                    <button (click)="subtrair()" class="button-quant">-</button>
                 </div>
 
             </div>
             <div class="container-cod">
-                <div class="cod"></div>
-                <div class="cod-descri"></div>
-                <button class="button-cod">Gerar Código</button>
+                <svg #barcode class="cod"></svg>
+                <input type="text" [value]="generatedCode" readonly class="cod-descri">
+                <button (click)="generateBarcode()" class="button-cod">Gerar Código</button>
             </div>
         </div>
         <button class="button-save">Salvar</button>

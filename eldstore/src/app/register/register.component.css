@@ -55,6 +55,8 @@
   background-color: #FAFAFA;
   border: none;
   border-radius: 10px;
+  font-size: 25px;
+  text-align: center;
 }
 
 .quant-container{
@@ -68,6 +70,8 @@
   background-color: #FAFAFA;
   border: none;
   border-radius: 10px;
+  font-size: 25px;
+  text-align: center;
 }
 
 .button-quant{
@@ -80,6 +84,7 @@
   color: white;
   border: none;
   cursor: pointer;
+  color: #EB8124;
 }
 
 .button-quant:hover {
@@ -104,8 +109,11 @@
 .cod-descri{
   width: 330px;
   height: 55px;
+  border: none;
+  text-align: center;
   border-radius: 10px;
   background-color: #FAFAFA;
+  font-size: 25px;
 }
 
 .button-cod{
