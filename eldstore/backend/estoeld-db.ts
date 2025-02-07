@@ -24,7 +24,7 @@ connection.connect((err) =>{
 
 app.use(express.json());
 
-app.get('/usuarios', (req, res) =>{
+app.get('/produto', (req, res) =>{
     connection.query(`SELECT * FROM Artifact`, (err, results) =>{
         if(err){
             res.send(500).json({ error: err })
@@ -34,7 +34,7 @@ app.get('/usuarios', (req, res) =>{
     });
 });
 
-app.post('/usuarios', (req, res) =>{
+app.post('/produto', (req, res) =>{
     const { BARCODE, NAME, AMOUNT } = req.body
     connection.query(`INSERT INTO Artifact VALUES (?, ?, ?, NOW())`, [BARCODE, NAME, AMOUNT], (err, results) =>{
         if(err){
@@ -45,7 +45,7 @@ app.post('/usuarios', (req, res) =>{
     });
 });
 
-app.put('/usuarios/:BARCODE_ID', (req, res) =>{
+app.put('/produto/:BARCODE_ID', (req, res) =>{
 
     const { BARCODE, NAME, AMOUNT } = req.body
     const { BARCODE_ID } = req.params
@@ -59,7 +59,7 @@ app.put('/usuarios/:BARCODE_ID', (req, res) =>{
     });
 });
 
-app.delete('/usuarios/:BARCODE', (req, res) =>{
+app.delete('/produto/:BARCODE', (req, res) =>{
     const { BARCODE } = req.params
     connection.query(`DELETE FROM Artifact WHERE BARCODE = ?`, [BARCODE], (err, results) =>{
         if(err){
