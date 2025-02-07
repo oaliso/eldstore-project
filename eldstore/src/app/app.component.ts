@@ -9,7 +9,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,  DashboardComponent, NavbarComponent, HomeComponent, TableComponent, SearchBarComponent],
+  imports: [NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
