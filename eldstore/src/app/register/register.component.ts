@@ -11,6 +11,9 @@ export class RegisterComponent {
   generatedCode: string = '';
   contador: number = 0;
 
+
+
+  //  PLUS AND MINUS BUTTON FOR QUANTITY {
   somar() {
     this.contador++;
   }
@@ -19,6 +22,8 @@ export class RegisterComponent {
     this.contador--;
   }
 
+
+  //  GENERATE RANDOM CODE AND SETTING BARCODE
   @ViewChild('barcode') barcodeElement!: ElementRef;
 
   generateRandomCode(): string {
