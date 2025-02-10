@@ -1,17 +1,21 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import JsBarcode from 'jsbarcode';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   selector: 'app-register',
   imports: [],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class RegisterComponent {
+
+  // constructor(private produtoService: ProdutoService){ }
+
   generatedCode: string = '';
   contador: number = 0;
-
-
 
   //  PLUS AND MINUS BUTTON FOR QUANTITY {
   somar() {
@@ -41,4 +45,27 @@ export class RegisterComponent {
       displayValue: true
     });
   }
+
+  //ADDING REGISTER 
+
+  // rpdt(){
+
+  //   const produto ={
+  //     BARCODE: this.generatedCode,
+  //     NAME: 'PRODUTO EXEMPLO',
+  //     AMOUNT: this.contador
+  //   }
+
+  //   this.produtoService.createProduct(produto).subscribe(
+  //     response => {
+  //       alert("Produto criado com sucesso!");
+  //       console.log(response);
+  //     },
+  //     error => {
+  //       alert("Erro ao criar o produto!");
+  //       console.error(error);
+  //     }
+  //   );
+  // }
+
 }
