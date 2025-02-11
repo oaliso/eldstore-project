@@ -3,23 +3,30 @@
         <h1 class="text">Cadastrar novo produto</h1>
         <div class="container">
             <div class="container-produto">
+                <!-- Nome do Produto -->
                 <h4 class="h4">Nome</h4>
-                <input class="produto-box"/>
+                <input (input) = "(onNameChange($event))"  class="produto-box" [required]/>
+
+                <!-- Quantidade do produto -->
                 <h4 class="h4" style="margin-top: 30px;">Quantidade</h4>
                 <div class="quant-container">
-                    <input type="number" [value]="contador" readonly class="quant-box"/>
+                    <input type="number" [value]="contador" readonly class="quant-box" [required] />
                     <button (click)="somar()" class="button-quant">+</button>
                     <button (click)="subtrair()" class="button-quant">-</button>
                 </div>
-
             </div>
+
+            <!-- Gerar Código de barra -->
             <div class="container-cod">
                 <svg #barcode class="cod"></svg>
-                <input type="text" [value]="generatedCode" readonly class="cod-descri">
+                <input type="text" [value]="generatedCode" readonly class="cod-descri" [required]>
                 <button (click)="generateBarcode()" class="button-cod">Gerar Código</button>
             </div>
+
         </div>
-        <button class="button-save">Salvar</button>
+
+        <!-- Botão de salvar -->
+        <button (click)="rpdt()" class="button-save">Salvar</button>
     </div>
 </div>
  

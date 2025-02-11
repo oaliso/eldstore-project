@@ -1,5 +1,6 @@
 const mysql = require('mysql2')
 const express = require('express')
+const cors = require('cors')
 
 const app = express()
 const port = 3000
@@ -23,6 +24,8 @@ connection.connect((err) =>{
 })
 
 app.use(express.json());
+
+app.use(cors())
 
 app.get('/produto', (req, res) =>{
     connection.query(`SELECT * FROM Artifact`, (err, results) =>{
