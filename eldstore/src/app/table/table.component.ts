@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -88,4 +88,11 @@ export class TableComponent implements OnInit {
         return 'header-todos';
     }
   }
+
+  @ViewChild('dashboardDiv', { static: false }) dashboardDiv!: ElementRef;
+
+  getTableComponent(): string {
+    return this.dashboardDiv?.nativeElement?.outerHTML || '<p>Erro ao capturar o conteúdo</p>';
+  }
+  
 }
