@@ -2,11 +2,12 @@ import { Component, Renderer2, Injector, ApplicationRef, ComponentFactoryResolve
 import { RouterLink } from '@angular/router';
 import { jsPDF } from 'jspdf';
 import { TableComponent } from '../table/table.component';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   standalone: true,
   selector: 'app-dashboard',
-  imports: [RouterLink, TableComponent],
+  imports: [RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -15,9 +16,11 @@ export class DashboardComponent {
     private renderer: Renderer2,
     private injector: Injector,
     private appRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private produtoservice: ProdutoService
   ) {}
-  
+
+
   quantity = 1500;
   adm = 351;
   ddm = 452;
