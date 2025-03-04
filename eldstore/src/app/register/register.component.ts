@@ -19,6 +19,7 @@ export class RegisterComponent {
   generatedCode: string = '';
   contador: number = 0;
   namerequest = ""
+  status = ""
 
   //  PLUS AND MINUS BUTTON FOR QUANTITY {
   somar() {
@@ -58,17 +59,41 @@ export class RegisterComponent {
 
   rpdt(){
 
+    // good : estoque bom : contador > 30
+    // low : alerta : contador <= 30
+    // out-stock : sem estoque : contador == 0
+
+   if(this.contador > 30){
+
+    this.status = "good"
+
+   }else{
+
+    if(this.contador >= 1){
+      this.status = 'low'
+
+    }else{
+      this.status = 'out-stock'
+
+    }
+
+   }
+
     const produto ={
       BARCODE: this.generatedCode,
       NAME: this.namerequest,
-      AMOUNT: this.contador
+      AMOUNT: this.contador,
+      CHECKSTOCK: this.status
     }
 
     this.produtoService.createProduct(produto).subscribe(
       response => {
+        alert("opa")
         console.log(response);
       },
       error => {
+        alert('apo')
+        
         console.error(error);
       }
     );
