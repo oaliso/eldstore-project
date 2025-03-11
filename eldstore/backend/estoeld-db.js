@@ -40,6 +40,17 @@ app.get('/produto', (req, res) =>{
     });
 });
 
+app.get('/produto/:BARCODE', (req, res) => {
+    const { BARCODE } = req.params
+    connection.query(`SELECT * FROM Artifact WHERE BARCODE = ?`, [BARCODE], (err, results) =>{
+        if(err){
+            res.sendStatus(500).json({ error: err })
+        }else{
+            res.json(results)
+        }
+    })
+})
+
 app.post('/produto', (req, res) =>{
     const { BARCODE, NAME, AMOUNT, CHECKSTOCK } = req.body
     connection.query(`INSERT INTO Artifact VALUES (?, ?, ?, ?, NOW())`, [BARCODE, NAME,  AMOUNT, CHECKSTOCK], (err, results) =>{

@@ -10,7 +10,7 @@ export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'edit', component: EditComponent},
+    {path: 'edit/:BARCODE', component: EditComponent},
     {path: 'table-dashboard', component: TableDashboardComponent},
     // {path: 'abaixodamedia', component: DdmComponent},
     // {path: 'esgotado', component: LowComponent}

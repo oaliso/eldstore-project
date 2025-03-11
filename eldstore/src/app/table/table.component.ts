@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
@@ -12,6 +13,9 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
   imports: [CommonModule, RouterLink, SearchBarComponent],
 })
 export class TableComponent implements OnInit {
+
+
+
   filterType: string = ''; 
   searchText: string = ''; 
   produtos = [
@@ -37,12 +41,14 @@ export class TableComponent implements OnInit {
     { nome: 'Papel higiênico', quantidade: 100 },
   ];
 
+  
+
   ngOnInit(): void {
     //'filter' da URL
     this.filterType = this.route.snapshot.queryParams['filter'] || '';
   }
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   //pesquisa vazia
   updateSearchText(newSearchText: string): void {
@@ -94,5 +100,13 @@ export class TableComponent implements OnInit {
   getTableComponent(): string {
     return this.dashboardDiv?.nativeElement?.outerHTML || '<p>Erro ao capturar o conteúdo</p>';
   }
+
+  // buscarProduto() {
+  //   if (this.barcode) {
+  //     this.router.navigate([`/produto/${this.barcode}`]);
+  //   } else {
+  //     alert("Por favor, insira um código de barras.");
+  //   }
+  // }
   
 }
