@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import JsBarcode from 'jsbarcode';
 import { ProdutoService } from '../produto.service';
-import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
