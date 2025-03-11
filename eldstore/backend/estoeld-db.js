@@ -33,7 +33,7 @@ app.use(cors())
 app.get('/produto', (req, res) =>{
     connection.query(`SELECT * FROM Artifact`, (err, results) =>{
         if(err){
-            res.sendStatus(500).json({ error: err })
+            return res.status(500).json({ error: err });
         }else{
             res.json(results)
         }
@@ -44,7 +44,7 @@ app.get('/produto/:BARCODE', (req, res) => {
     const { BARCODE } = req.params
     connection.query(`SELECT * FROM Artifact WHERE BARCODE = ?`, [BARCODE], (err, results) =>{
         if(err){
-            res.sendStatus(500).json({ error: err })
+            return res.status(500).json({ error: err });
         }else{
             res.json(results)
         }
@@ -83,7 +83,7 @@ app.delete('/produto/:BARCODE', (req, res) =>{
     const { BARCODE } = req.params
     connection.query(`DELETE FROM Artifact WHERE BARCODE = ?`, [BARCODE], (err, results) =>{
         if(err){
-            res.sendStatusStatus(500).json({ error: err })
+            return res.status(500).json({ error: err }); // Usando return para evitar envio múltiplo
         }else{
             res.json(results)
         }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 
-interface Produto {
+export interface Produto {
   BARCODE: string;
   NAME: string;
   AMOUNT: number;
@@ -27,4 +27,9 @@ export class ProdutoService {
   getProductByID(barcode: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${barcode}`)
   }
+  
+  getAllProducts(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.apiUrl);
+  }
+
 }
