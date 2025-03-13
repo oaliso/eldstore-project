@@ -4,7 +4,7 @@
         <div class="container">
             <div class="container-produto">
                 <h4 class="h4">Nome</h4>
-                <input class="produto-box"/>
+                <input class="produto-box" [value]="titleProduct" (input) = "(onNameChange($event))"/>
                 <h4 class="h4" style="margin-top: 30px;">Quantidade</h4>
                 <div class="quant-container">
                     <input type="number" [value]="contador" readonly class="quant-box"/>
@@ -15,13 +15,13 @@
             </div>
             <div class="container-cod">
                 <svg #barcode class="cod"></svg>
-                <input type="text" [value]="generatedCode" readonly class="cod-descri">
-                <button (click)="generateBarcode()" class="button-cod">Gerar Código</button>
+                <input type="text" [value]="barcodeparams" readonly class="cod-descri">
             </div>
         </div>
         <div class="button-container">
-            <button class="button-save">Salvar</button>
-            <button class="button-delete">Excluir</button>
+            <button class="button-delete" (click)="deleteProduct()" >Excluir</button>
+            <button class="button-save" (click)="rpdt()" >Salvar</button>
+
         </div>
     </div>
   </div>

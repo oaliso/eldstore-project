@@ -31,7 +31,8 @@ export class TableComponent implements OnInit {
     this.filterType = this.route.snapshot.queryParams['filter'] || '';
 
    
-    this.produtoService.getAllProducts().subscribe((dados) => {
+    this.produtoService.getAllProducts().subscribe(
+      (dados) => {
       this.produtos = dados; // Atualiza a lista 
     });
   }

@@ -5,7 +5,7 @@
             <div class="container-produto">
                 <!-- Nome do Produto -->
                 <h4 class="h4">Nome</h4>
-                <input (input) = "(onNameChange($event))"  class="produto-box" [required]/>
+                <input (input) = "(onNameChange($event))" [value]="namerequest" class="produto-box" [required]/>
 
                 <!-- Quantidade do produto -->
                 <h4 class="h4" style="margin-top: 30px;">Quantidade</h4>
@@ -18,7 +18,7 @@
 
             <!-- Gerar Código de barra -->
             <div class="container-cod">
-                <svg #barcode class="cod"></svg>
+                <svg #barcode  class="cod"></svg>
                 <input type="text" [value]="generatedCode" readonly class="cod-descri" [required]>
                 <button (click)="generateBarcode()" class="button-cod">Gerar Código</button>
             </div>

@@ -5,6 +5,7 @@ li{
 .navbar {
     display: flex;
     align-items: center;
+    flex-direction: column;
     padding: 0px 0px 0px 40px;
     width: 100%;
     height: 70px; 
@@ -20,6 +21,7 @@ li{
 
 .logo-img {
   width: 150px; 
+  margin-right: 40px;
   height: auto; 
   object-fit: contain; 
 }
@@ -31,7 +33,7 @@ li{
     padding: 10px 10px 10px 50px;
     border-bottom-left-radius: 20px;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     height: 100%;
 
   }

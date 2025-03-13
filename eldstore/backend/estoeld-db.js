@@ -67,9 +67,9 @@ app.post('/produto', (req, res) =>{
 
 app.put('/produto/:BARCODE_ID', (req, res) =>{
 
-    const { BARCODE, NAME, AMOUNT } = req.body
+    const { NAME, AMOUNT } = req.body
     const { BARCODE_ID } = req.params
-    connection.query(`UPDATE Artifact SET BARCODE = ?, NAME = ?, AMOUNT = ? WHERE BARCODE = ?`, [BARCODE, NAME, AMOUNT, BARCODE_ID], (err, results) =>{
+    connection.query(`UPDATE Artifact SET NAME = ?, AMOUNT = ? WHERE BARCODE = ?`, [NAME, AMOUNT, BARCODE_ID], (err, results) =>{
         if(err){
             res.sendStatus(500).json({ error: err })
         }else{

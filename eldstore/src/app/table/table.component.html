@@ -13,7 +13,7 @@
       <tbody>
         <tr *ngFor="let produto of filteredProducts">
           <td class="product-cell">
-            <a routerLink="/edit">
+            <a routerLink="/edit/{{produto.BARCODE}}">
               <button class="btn-edit">
                 <i class="bi bi-pencil-fill"></i>
                 <i class="bi bi-trash-fill"></i>
@@ -22,7 +22,9 @@
             {{ produto.NAME }}
           </td>
           <td>{{ produto.AMOUNT }}</td>
-          <td><button class="btn-code">|||</button></td>
+          <td><button class="btn-code">
+            <i class="bi bi-upc-scan"></i>
+          </button></td>
         </tr>
       </tbody>
     </table>

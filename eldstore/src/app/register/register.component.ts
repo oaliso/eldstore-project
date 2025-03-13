@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import JsBarcode from 'jsbarcode';
 import { ProdutoService } from '../produto.service';
 
@@ -8,12 +8,11 @@ import { ProdutoService } from '../produto.service';
   providers: [ProdutoService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class RegisterComponent {
 
-  constructor(private produtoService: ProdutoService){ }
+  constructor(private produtoService: ProdutoService, private cdr: ChangeDetectorRef){ }
 
   generatedCode: string = '';
   contador: number = 0;
@@ -38,6 +37,7 @@ export class RegisterComponent {
   }
 
   generateBarcode(): void {
+
     this.generatedCode = this.generateRandomCode();
 
     JsBarcode(this.barcodeElement.nativeElement, this.generatedCode, {
@@ -87,13 +87,14 @@ export class RegisterComponent {
 
     this.produtoService.createProduct(produto).subscribe(
       response => {
-        alert("opa")
-        console.log(response);
+        alert("Produto cadastrado com sucesso!")
+
+        window.location.reload()
+
+
       },
       error => {
-        alert('apo')
-        
-        console.error(error);
+        alert('Erro ao cadastrar produto')
       }
     );
   }

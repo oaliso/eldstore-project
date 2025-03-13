@@ -4,7 +4,7 @@ import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-table-dashboard',
-  imports: [SearchBarComponent, TableComponent ],
+  imports: [TableComponent ],
   templateUrl: './table-dashboard.component.html',
   styleUrl: './table-dashboard.component.css'
 })
