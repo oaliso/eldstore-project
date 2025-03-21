@@ -62,7 +62,7 @@ export class RegisterComponent {
     // low : alerta : contador <= 30
     // out-stock : sem estoque : contador == 0
 
-   if(this.contador > 30){
+   if(this.contador >= 50){
 
     this.status = "good"
 

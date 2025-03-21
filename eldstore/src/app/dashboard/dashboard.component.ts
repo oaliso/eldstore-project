@@ -1,4 +1,4 @@
-import { Component, Renderer2, Injector, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, Renderer2, Injector, ApplicationRef, ComponentFactoryResolver, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { jsPDF } from 'jspdf';
 import { TableComponent } from '../table/table.component';
@@ -17,14 +17,67 @@ export class DashboardComponent {
     private injector: Injector,
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private produtoservice: ProdutoService
+    private produtoservice: ProdutoService,
+    private cdr: ChangeDetectorRef
   ) {}
 
 
-  quantity = 1500;
-  adm = 351;
-  ddm = 452;
-  fdm = 7;
+  qtdt = 0;
+  good = 0;
+  low = 0;
+  out = 0;
+
+  ngOnInit(){
+    this.countProduct()
+  }
+
+  countProduct(){
+
+    this.produtoservice.countAllProducts().subscribe(
+      (data) => {
+          this.qtdt = data.counter;
+          console.log(data);
+          
+      },
+      (err) => {
+          alert("Erro na contagem quantidade total");
+          
+      }
+    )
+
+    this.produtoservice.countProducts('good').subscribe(
+      (data) => {
+        this.good = data.counter;
+        console.log(data);
+      }, 
+      (err) => {
+        alert("Erro na contagem")
+      }
+    )
+
+    this.produtoservice.countProducts('low').subscribe(
+      (data) => {
+        this.low = data.counter;
+        console.log(data);
+      }, 
+      (err) => {
+        alert("Erro na contagem")
+      }
+    )
+
+    this.produtoservice.countProducts('out-stock').subscribe(
+      (data) => {
+        this.out = data.counter;
+        console.log(data);
+      }, 
+      (err) => {
+        alert("Erro na contagem")
+      }
+    )
+
+    this.cdr.detectChanges()
+
+  }
 
   filterProducts(status: string) {
     switch (status) {

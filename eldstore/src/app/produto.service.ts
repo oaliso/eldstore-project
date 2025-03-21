@@ -58,4 +58,22 @@ export class ProdutoService {
     return this.http.get<Produto[]>(this.apiUrl);
   }
 
+  countProducts(checkstock: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/counter?checkstock=${checkstock}`).pipe(
+      catchError((error) => {
+        console.error("Erro ao buscar produto: ", error);
+        return throwError(() => new Error("Falha ao contar produto"))
+      })
+    )
+  }
+
+  countAllProducts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/count`).pipe(
+      catchError((error) => {
+          console.error("Erro ao buscar produto:", error);
+          return throwError(() => new Error("Falha ao carregar produto."));
+      })
+  );
+  }
+
 }
