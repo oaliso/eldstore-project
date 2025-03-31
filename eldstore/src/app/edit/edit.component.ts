@@ -3,6 +3,9 @@ import JsBarcode from 'jsbarcode';
 import { Produto, ProdutoService } from '../produto.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { EDialogComponent } from '../e-dialog/e-dialog.component';
+import { ErrorEditDialogComponent } from '../error-edit-dialog/error-edit-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -15,14 +18,21 @@ import { Location } from '@angular/common';
 
 export class EditComponent {
 
-  namerequest: string = ''
-  status: string = ''
+  constructor( 
+    private route: ActivatedRoute, 
+    private produtoService: ProdutoService, 
+    private cdr: ChangeDetectorRef, 
+    private location: Location,
+    private dialog: MatDialog
+  ){}
+
+  namerequest = ""
+  status = ""
+  contador: number = 0;
   barcode: string = '';
+
   barcodeparams: string | null = '';
   titleProduct: string = '';
-  contador: number = 0;
-
-  constructor( private route: ActivatedRoute, private produtoService: ProdutoService, private cdr: ChangeDetectorRef, private location: Location){}
 
   ngOnInit(){
 
@@ -34,6 +44,10 @@ export class EditComponent {
 
       }
     })
+  }
+
+  ngOnDestroy(){
+    window.location.reload()
   }
 
 // AUMENTAR E DIMINUIR QUANTIDADE ::::::
@@ -96,9 +110,9 @@ export class EditComponent {
     if(this.barcodeparams){
       this.produtoService.deleteProduct(this.barcodeparams).subscribe();
     }
-    alert("Produto Deletado Com Sucesso")
-
-    this.location.back();
+  
+    this.typeResult = "deletado"
+    this.openDialog()
 
 
   }
@@ -112,8 +126,8 @@ export class EditComponent {
 
   rpdt(){
 
-    // good : estoque bom : contador > 30
-    // low : alerta : contador <= 30
+    // good : estoque bom : contador >= 50
+    // low : alerta : contador < 50
     // out-stock : sem estoque : contador == 0
 
    if(this.contador >= 50){
@@ -132,7 +146,7 @@ export class EditComponent {
 
    }
 
-    const produto ={
+    const produto = {
       NAME: this.titleProduct,
       AMOUNT: this.contador,
       CHECKSTOCK: this.status
@@ -140,19 +154,49 @@ export class EditComponent {
 
     this.produtoService.updateProduct(this.barcode, produto).subscribe(
       response => {
-        alert("Produto atualizado com sucesso!")
-        console.log(response);
 
-        
-        this.location.back();
+        this.openDialog()
         
       },
       error => {
-        alert('Erro ao atualizar produto')
+        this.opendDialogError()
         
         console.error(error);
       }
     );
+
+    this.cdr.detectChanges()
   }
+
+  typeResult = ""
+
+    openDialog(){
+      let dialogRef = this.dialog.open(EDialogComponent, {
+        
+        data: {status: this.typeResult},
+        height: '200px',
+        width: '400px',
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+      
+      
+  
+    }
+
+      opendDialogError(){
+        let dialogRef = this.dialog.open(ErrorEditDialogComponent, {
+          height: '200px',
+          width: '400px',
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result:${result}` )
+        })
+      }
+
+      
 
 }

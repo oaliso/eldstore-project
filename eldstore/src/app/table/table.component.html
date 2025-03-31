@@ -22,7 +22,7 @@
             {{ produto.NAME }}
           </td>
           <td>{{ produto.AMOUNT }}</td>
-          <td><button class="btn-code">
+          <td><button (click)="selectProduto(produto.BARCODE)" (click)="openDialog()" class="btn-code">
             <i class="bi bi-upc-scan"></i>
           </button></td>
         </tr>

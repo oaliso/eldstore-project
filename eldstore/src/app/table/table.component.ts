@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ProdutoService } from '../produto.service'; 
 import { Produto } from '../produto.service'; 
+import { BcModalComponent } from '../bc-modal/bc-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-table',
@@ -24,7 +26,8 @@ export class TableComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-    private produtoService: ProdutoService // Injeção do ProdutoService
+    private produtoService: ProdutoService,
+    private dialog: MatDialog // Injeção do ProdutoService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +38,12 @@ export class TableComponent implements OnInit {
       (dados) => {
       this.produtos = dados; // Atualiza a lista 
     });
+  }
+
+  selectedBarcode: string = ""
+
+  selectProduto(barcode: string): void {
+    this.selectedBarcode = barcode;
   }
 
   updateSearchText(newSearchText: string): void {
@@ -83,6 +92,23 @@ export class TableComponent implements OnInit {
   getTableComponent(): string {
     return this.dashboardDiv?.nativeElement?.outerHTML || '<p>Erro ao capturar o conteúdo</p>';
   }
+
+  // go to modal
+
+    openDialog(){
+  
+      let dialogRef = this.dialog.open(BcModalComponent, {
+        data: {code: this.selectedBarcode},
+        height: '320px',
+        width: '800px',
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`); 
+      });
+      
+    }
+
 }
 
 

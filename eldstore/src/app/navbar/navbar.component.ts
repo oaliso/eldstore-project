@@ -25,19 +25,20 @@ export class NavbarComponent {
     this.produtoservice.countProducts('out-stock').subscribe(
       (data) => {
         this.notify = data.counter;
+
+
+        if(this.notify >= 1){
+          this.changenotify = false;
+        }else{
+          this.changenotify = true;
+        }
+
         this.cdr.detectChanges()
 
       }, 
       (err) => {
         alert("Erro na contagem")
-      }
-    )
-
-  if(this.low >= 1){
-    this.changenotify = true;
-  }else{
-    this.changenotify = false;
-  }
+      });
   }
 
   

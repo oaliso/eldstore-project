@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { RouterOutlet } from '@angular/router';
-import { Router } from 'express';
-
 
 @Component({
   selector: 'app-root',
@@ -11,6 +9,9 @@ import { Router } from 'express';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   title = 'eldstore';
 }
 

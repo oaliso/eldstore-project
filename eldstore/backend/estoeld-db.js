@@ -77,10 +77,10 @@ app.post('/produto', (req, res) => {
 });
 
 app.put('/produto/:BARCODE_ID', (req, res) => {
-    const { NAME, AMOUNT } = req.body;
+    const { NAME, AMOUNT, CHECKSTOCK } = req.body;
     const { BARCODE_ID } = req.params;
     
-    connection.query(`UPDATE Artifact SET NAME = ?, AMOUNT = ? WHERE BARCODE = ?`, [NAME, AMOUNT, BARCODE_ID], (err, results) => {
+    connection.query(`UPDATE Artifact SET NAME = ?, AMOUNT = ?, CHECKSTOCK = ? WHERE BARCODE = ?`, [NAME, AMOUNT, CHECKSTOCK, BARCODE_ID], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err });
         }

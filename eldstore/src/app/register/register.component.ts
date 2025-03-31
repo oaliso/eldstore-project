@@ -1,6 +1,9 @@
-import { Component, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectorRef, model } from '@angular/core';
 import JsBarcode from 'jsbarcode';
 import { ProdutoService } from '../produto.service';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog'
+import { RDialogComponent } from '../r-dialog/r-dialog.component';
+import { ErrorRegisterDialogComponent } from '../error-register-dialog/error-register-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +15,10 @@ import { ProdutoService } from '../produto.service';
 
 export class RegisterComponent {
 
-  constructor(private produtoService: ProdutoService, private cdr: ChangeDetectorRef){ }
+  constructor(
+    private produtoService: ProdutoService,
+    private cdr: ChangeDetectorRef, 
+    private dialog: MatDialog){ }
 
   generatedCode: string = '';
   contador: number = 0;
@@ -87,16 +93,41 @@ export class RegisterComponent {
 
     this.produtoService.createProduct(produto).subscribe(
       response => {
-        alert("Produto cadastrado com sucesso!")
-
-        window.location.reload()
-
+        this.openDialog()
 
       },
       error => {
-        alert('Erro ao cadastrar produto')
+        this.opendDialogError()
       }
+
+      
     );
+  }
+
+  //modal
+
+  openDialog(){
+
+    let dialogRef = this.dialog.open(RDialogComponent, {
+      height: '200px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`); 
+    });
+    
+  }
+
+  opendDialogError(){
+    let dialogRef = this.dialog.open(ErrorRegisterDialogComponent, {
+      height: '200px',
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result:${result}` )
+    })
   }
 
 }

@@ -1,0 +1,22 @@
+.closeButton{
+    width: 100%;
+}
+
+.divButton{
+    margin-top: 50px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.divLabel{
+    font-size: 20px;
+    margin-top: 13%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
