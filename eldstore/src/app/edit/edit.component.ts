@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { EDialogComponent } from '../e-dialog/e-dialog.component';
 import { ErrorEditDialogComponent } from '../error-edit-dialog/error-edit-dialog.component';
+import { EmptydialogComponent } from '../emptydialog/emptydialog.component';
 
 @Component({
   selector: 'app-register',
@@ -130,6 +131,11 @@ export class EditComponent {
     // low : alerta : contador < 50
     // out-stock : sem estoque : contador == 0
 
+    if (!this.titleProduct.trim()) {
+      this.openDialogEmpty()
+      return;
+    }
+
    if(this.contador >= 50){
 
     this.status = "good"
@@ -171,6 +177,9 @@ export class EditComponent {
   typeResult = ""
 
     openDialog(){
+
+      this.typeResult = "atualizado"
+
       let dialogRef = this.dialog.open(EDialogComponent, {
         
         data: {status: this.typeResult},
@@ -186,17 +195,30 @@ export class EditComponent {
   
     }
 
-      opendDialogError(){
-        let dialogRef = this.dialog.open(ErrorEditDialogComponent, {
-          height: '200px',
-          width: '400px',
-        });
-    
-        dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result:${result}` )
-        })
-      }
+    opendDialogError(){
+      let dialogRef = this.dialog.open(ErrorEditDialogComponent, {
+        height: '200px',
+        width: '400px',
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result:${result}` )
+      })
+    }
 
-      
+    openDialogEmpty(){
+      let dialogRef = this.dialog.open(EmptydialogComponent, {
+        height: '200px',
+        width: '400px',
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+
+    exit(){
+      this.location.back()
+    }
 
 }

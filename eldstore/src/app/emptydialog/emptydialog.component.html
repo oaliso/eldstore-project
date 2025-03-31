@@ -1,12 +1,12 @@
 <div>
     <div class="container divLabel">
         <p class="labelText">
-            Erro ao {{status}} o produto
+            Os campos de nome e código de barra devem estar preenchidos
         </p>
     </div>
 <!-- ----------------------------------------- -->
     <div class="container divButton">
-        <button style="background-color: #f37c23;" class="closeButton" (click)="closeDialog()"  mat-flat-button>
+        <button style="background-color: #f37c23;" class="closeButton" (click)="closeDialog()" routerLink="/home"  mat-flat-button>
             Fechar
         </button>
     </div>

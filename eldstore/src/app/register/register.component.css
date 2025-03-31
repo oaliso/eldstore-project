@@ -91,6 +91,15 @@
   background-color: #cfcfcf;
 }
 
+.exit{
+  border-radius: 100%;
+  color: white;
+  background-color: rgb(255, 51, 51);
+  border: transparent;
+  transform: translate(550px, -485px);
+  width: 40px; height: 40px;
+}
+
 .container-cod{
   align-items: center; 
   display: flex;
