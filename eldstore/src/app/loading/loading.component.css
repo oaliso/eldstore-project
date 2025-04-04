@@ -1,0 +1,9 @@
+div{
+    font-size: 20px;
+    margin-top: 25%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
