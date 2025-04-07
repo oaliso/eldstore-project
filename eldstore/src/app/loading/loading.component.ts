@@ -21,7 +21,7 @@ export class LoadingComponent {
   executar(){
     setTimeout(() => {
       this.closeDialog()
-    }, 10000)
+    }, 860)
   }
 
   closeDialog(){

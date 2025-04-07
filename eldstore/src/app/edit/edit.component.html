@@ -4,10 +4,10 @@
         <div class="container">
             <div class="container-produto">
                 <h4 class="h4">Nome</h4>
-                <input class="produto-box" [value]="titleProduct" (input) = "(onNameChange($event))"/>
+                <input class="produto-box" [value]="titleProduct" (input)="(onNameChange($event))"/>
                 <h4 class="h4" style="margin-top: 30px;">Quantidade</h4>
                 <div class="quant-container">
-                    <input type="number" [value]="contador" class="quant-box"/>
+                    <input type="number" [value]="contador" (input)="(onAmountChange($event))" class="quant-box"/>
                     <button (click)="somar()" class="button-quant">+</button>
                     <button (click)="subtrair()" class="button-quant">-</button>
                 </div>

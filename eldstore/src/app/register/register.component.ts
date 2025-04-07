@@ -61,6 +61,11 @@ export class RegisterComponent {
     this.namerequest = inputElement.value;
   }
 
+  onAmountChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.contador = inputElement.valueAsNumber;
+  }
+
   rpdt() {
     // Verificar se o código gerado e o nome do produto não estão vazios
     if (!this.generatedCode || !this.namerequest.trim()) {

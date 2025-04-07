@@ -125,6 +125,11 @@ export class EditComponent {
     this.titleProduct = inputElement.value;
   }
 
+  onAmountChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.contador = inputElement.valueAsNumber;
+  }
+
   rpdt(){
 
     // good : estoque bom : contador >= 50

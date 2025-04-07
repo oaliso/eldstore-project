@@ -187,7 +187,7 @@ export class DashboardComponent {
 
     doc.save('dashboard.pdf')
 
-    }, 10000);
+    }, 850);
 
   }
 
