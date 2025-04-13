@@ -6,11 +6,12 @@ import Chart from 'chart.js/auto';
 import { Produto, ProdutoService } from '../produto.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingComponent } from '../loading/loading.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-dashboard',
-  imports: [RouterLink],
+  imports: [RouterLink, LoadingComponent, NgIf],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -23,6 +24,7 @@ export class DashboardComponent {
   
   @ViewChild('chartCanvas', { static: false }) chartCanvas!: ElementRef;
 
+  loading = true
   qtdt = 0;
   good = 0;
   low = 0;
@@ -30,7 +32,10 @@ export class DashboardComponent {
   chart!: Chart;
 
   ngOnInit(){
-    this.countProduct() 
+    this.countProduct()
+    setTimeout(() => {
+      this.loading = false
+    }, 1200);
   }
 
   createChart() {
@@ -227,7 +232,7 @@ export class DashboardComponent {
       }, error => {
         console.error("Erro ao buscar produtos:", error);
       });
-    }, 900);
+    }, 1500);
   }
 
       openDialog(){

@@ -1,6 +1,8 @@
-<div class="home">
+<app-loading style="margin-top: -100px;" *ngIf="loading"></app-loading>
+<div [hidden]="loading" class="home">
     <div class="box">
         <app-table></app-table>
       
     </div>
   </div>
+

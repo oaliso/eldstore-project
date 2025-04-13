@@ -2,15 +2,16 @@ import { Component, ViewChild, ElementRef, ChangeDetectionStrategy, NgModule, Ch
 import JsBarcode from 'jsbarcode';
 import { Produto, ProdutoService } from '../produto.service';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { EDialogComponent } from '../e-dialog/e-dialog.component';
 import { ErrorEditDialogComponent } from '../error-edit-dialog/error-edit-dialog.component';
 import { EmptydialogComponent } from '../emptydialog/emptydialog.component';
+import { LoadingComponent } from "../loading/loading.component";
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [LoadingComponent, NgIf],
   providers: [ProdutoService],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
@@ -27,6 +28,8 @@ export class EditComponent {
     private dialog: MatDialog
   ){}
 
+  loading = true
+
   namerequest = ""
   status = ""
   contador: number = 0;
@@ -36,13 +39,19 @@ export class EditComponent {
   titleProduct: string = '';
 
   ngOnInit(){
-
     this.route.paramMap.subscribe(params =>{
       this.barcodeparams = params.get('BARCODE')
       
       if(this.barcodeparams){
         this.getProduct()
+        // setTimeout(()=>{
+        //   this.loading = false
+        //   this.cdr.detectChanges()
+        // }, 9000)
 
+        
+        
+        
       }
     })
   }
@@ -74,6 +83,7 @@ export class EditComponent {
         height: 50,
         displayValue: true
       });
+
     }
 
   // FUNÇÃO QUE PUXA OS DADOS DO BANCO PARA AS LACUNAS ::::::
@@ -82,14 +92,15 @@ export class EditComponent {
     if (this.barcodeparams) {
         this.produtoService.getProductByID(this.barcodeparams).subscribe(
             (data) => {
-
               console.log("Dados recebidos da API:", data);
                 
                 if (data) {
                     this.titleProduct = data[0].NAME;
                     this.contador = data[0].AMOUNT;
                     this.barcode = data[0].BARCODE;
-                    this.generateBarcode()
+                    this.generateBarcode()   
+                    this.cdr.detectChanges()
+                    this.loading = false
                     this.cdr.detectChanges()
 
                 } else {
@@ -102,7 +113,14 @@ export class EditComponent {
                 alert("Produto não encontrado.");
             }
         );
+
+        
+
     }
+
+    
+
+    
   }
 
   // DELETAR UM PRODUTO :::::::::::::::;
