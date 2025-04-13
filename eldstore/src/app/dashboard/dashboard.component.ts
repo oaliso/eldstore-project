@@ -1,10 +1,9 @@
 import { Component, Renderer2, Injector, ApplicationRef, ComponentFactoryResolver, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import Chart from 'chart.js/auto';
-import { TableComponent } from '../table/table.component';
-import { ProdutoService } from '../produto.service';
-import { Dialog } from '@angular/cdk/dialog';
+import { Produto, ProdutoService } from '../produto.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingComponent } from '../loading/loading.component';
 
@@ -17,10 +16,6 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class DashboardComponent {
   constructor(
-    private renderer: Renderer2,
-    private injector: Injector,
-    private appRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private produtoservice: ProdutoService,
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog
@@ -38,12 +33,10 @@ export class DashboardComponent {
     this.countProduct() 
   }
 
-
-
   createChart() {
 
     if (this.chart) {
-      this.chart.destroy(); // Destroi o gráfico anterior antes de recriar
+      this.chart.destroy();
     }
 
     const canvas = this.chartCanvas.nativeElement as HTMLCanvasElement;
@@ -67,8 +60,8 @@ export class DashboardComponent {
         }]
       },
       options: {
-        responsive: true, // Impede que o canvas se ajuste ao tamanho da tela
-        maintainAspectRatio: false, // Impede distorção no PDF
+        responsive: true, 
+        maintainAspectRatio: false, 
         plugins: {
           legend: {
             position: 'bottom',
@@ -76,7 +69,7 @@ export class DashboardComponent {
         },
         elements: {
           arc: {
-            borderWidth: 0 // Remove a separação entre as fatias
+            borderWidth: 0 
           }
         }
       }
@@ -146,49 +139,95 @@ export class DashboardComponent {
     }
   }
 
-  gerarPdf(){
-
+  gerarPdf() {
     setTimeout(() => {
+      const canvas = this.chartCanvas.nativeElement as HTMLCanvasElement;
+      const imgData = canvas.toDataURL('image/png');
+  
+      if (!imgData || imgData.length < 100) {
+        console.error("Erro: Imagem não gerada corretamente!");
+        return;
+      }
+  
+      this.produtoservice.getAllProducts().subscribe((produtos: Produto[]) => {
+        const doc = new jsPDF();
+        let currentY = 40;
+  
+        const verificarEspaco = (alturaNecessaria: number): void => {
+          const pageHeight = doc.internal.pageSize.height;
+          if (currentY + alturaNecessaria > pageHeight) {
+            doc.addPage();
+            currentY = 20;
+          }
+        };
+  
+        doc.setFontSize(18);
+        doc.text('Relatório de Estoque', 105, 20, { align: 'center' });
+  
+        doc.line(20, 30, 190, 30);
+  
+        currentY = 40;
+  
+        const gerarTabela = (titulo: string, dados: Produto[]) => {
+          if (dados.length === 0) return;
+  
+          verificarEspaco(20);
+          doc.setFontSize(14);
+          doc.text(titulo, 20, currentY);
+          currentY += 5;
+  
+          const body = dados.map(p => [p.NAME, p.AMOUNT.toString(), p.BARCODE]);
+  
+          autoTable(doc, {
+            startY: currentY,
+            head: [['Nome', 'Quantidade', 'Código de Barras']],
+            body: body,
+            theme: 'striped',
+            margin: { left: 20, right: 20 }
+          });
+  
+          const docTyped = doc as jsPDF & { lastAutoTable?: { finalY: number } };
+          if (docTyped.lastAutoTable?.finalY) {
+            currentY = docTyped.lastAutoTable.finalY + 15;
+          }
+        };
 
-    const canvas = this.chartCanvas.nativeElement as HTMLCanvasElement;
-    const imgData = canvas.toDataURL('image/png');
+        const good = produtos.filter(p => p.CHECKSTOCK?.toLowerCase().trim() === 'good');
+        const low = produtos.filter(p => p.CHECKSTOCK?.toLowerCase().trim() === 'low');
+        const out = produtos.filter(p => p.CHECKSTOCK?.toLowerCase().trim() === 'out-stock');
+  
+        gerarTabela('Produtos com estoque bom', good);
+        gerarTabela('Produtos com estoque mediano', low);
+        gerarTabela('Produtos esgotados', out);
+  
+        doc.addPage()
+        currentY = 20
+        doc.setFontSize(14);
+        doc.fill()
+        doc.text('Resumo de Estoque', 20, currentY);
+        currentY += 10;
+        doc.setFontSize(12);
+        doc.text('Quantidade de Itens total:', 20, currentY);
+        doc.text(`${this.qtdt}`, 170, currentY);
+        currentY += 10;
+        doc.text('Quantidade de itens com estoque bom:', 20, currentY);
+        doc.text(`${this.good}`, 170, currentY);
+        currentY += 10;
+        doc.text('Quantidade de itens com estoque mediano:', 20, currentY);
+        doc.text(`${this.low}`, 170, currentY);
+        currentY += 10;
+        doc.text('Quantidade de itens esgotados:', 20, currentY);
+        doc.text(`${this.out}`, 170, currentY);
+        currentY += 20;
 
-    if (!imgData || imgData.length < 100) {
-      console.error("Erro: Imagem não gerada corretamente!");
-      return;
-    }
-
-    const doc = new jsPDF();
-
-    // Título
-    doc.setFontSize(18);
-    doc.text('Relatório de Estoque', 105, 20, { align: 'center' });
-
-    // Linha separadora
-    doc.line(20, 30, 190, 30);
-
-    // Tabela
-    doc.setFontSize(12);
-    doc.text('Quantidade de Itens total:', 20, 40);
-    doc.text(`${this.qtdt}`, 170, 40);
-
-    doc.text('Quantidade de itens com estoque bom:', 20, 50);
-    doc.text(`${this.good}`, 170, 50);
-
-    doc.text('Quantidade de itens com estoque mediano:', 20, 60);
-    doc.text(`${this.low}`, 170, 60);
-
-    doc.text('Quantidade de itens esgotados:', 20, 70);
-    doc.text(`${this.out}`, 170, 70);
-    
-    console.log("Imagem Base64:", imgData);
-
-    doc.addImage(imgData, 'PNG', 20, 80, 170, 100);
-
-    doc.save('dashboard.pdf')
-
-    }, 850);
-
+        verificarEspaco(70);
+        doc.addImage(imgData, 'PNG', 52, currentY, 100, 65);
+  
+        doc.save('dashboard.pdf');
+      }, error => {
+        console.error("Erro ao buscar produtos:", error);
+      });
+    }, 900);
   }
 
       openDialog(){
@@ -206,43 +245,5 @@ export class DashboardComponent {
         
     
       }
-  
-  // gerarPdf() {
-  //   const container = this.renderer.createElement('div');
-  //   this.renderer.setStyle(container, 'display', 'none'); 
-  //   document.body.appendChild(container);
-
-  //   const factory = this.componentFactoryResolver.resolveComponentFactory(TableComponent);
-  //   const componentRef = factory.create(this.injector);
-  //   this.appRef.attachView(componentRef.hostView);
-    
-  //   this.renderer.appendChild(container, componentRef.location.nativeElement);
-
-  //   setTimeout(() => {
-  //     const content = componentRef.instance.getTableComponent();
-  //     const doc = new jsPDF({
-  //       orientation: 'portrait',
-  //       unit: 'mm',
-  //       format: 'a4'
-  //     });
-
-  //     doc.setFontSize(100); 
-      
-  //     doc.html(content, {
-  //       x: 10,
-  //       y: 10,
-  //       width: 400,
-  //       windowWidth: 1024, 
-
-  //       callback: (doc) => {
-  //         doc.save('dashboard.pdf'); 
-  //         document.body.removeChild(container);
-  //         this.appRef.detachView(componentRef.hostView);
-  //         componentRef.destroy();
-  //       },
-
-  //     });
-  //   }, 10);
-  // }
 
 }

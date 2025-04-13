@@ -8,6 +8,7 @@ export interface Produto {
   BARCODE: string;
   NAME: string;
   AMOUNT: number;
+  CHECKSTOCK: 'good' | 'low' | 'out' | string;
 }
 
 export interface ProdutoAtualizado {
