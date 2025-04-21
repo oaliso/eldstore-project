@@ -24,7 +24,7 @@ connection.connect((err) => {
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'https://estoeld-app-6450354291.us-central1.run.app', // Substitua pelo seu frontend URL
+    origin: 'https://estoeld-app-6450354291.us-central1.run.app', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
