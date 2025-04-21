@@ -22,7 +22,7 @@ export interface ProdutoAtualizado {
 
 export class ProdutoService {
 
-  private apiUrl = "http://localhost:3000/produto"
+  private apiUrl = "https://estoeld-backend-6450354291.us-central1.run.app/produto"
 
   constructor(private http: HttpClient) { }
 

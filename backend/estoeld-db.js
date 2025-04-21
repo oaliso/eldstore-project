@@ -4,10 +4,10 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
+    socketPath: '/cloudsql/moto-academy-web-453015:us-central1:estoeld',
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_DATA
@@ -22,7 +22,14 @@ connection.connect((err) => {
 });
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://estoeld-app-6450354291.us-central1.run.app', // Substitua pelo seu frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+  
+app.use(cors(corsOptions));  
 
 app.get('/produto', (req, res) => {
     connection.query(`SELECT * FROM Artifact`, (err, results) => {

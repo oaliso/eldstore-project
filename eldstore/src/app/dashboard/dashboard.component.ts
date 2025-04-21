@@ -92,7 +92,7 @@ export class DashboardComponent {
           
       },
       (err) => {
-          alert("Erro na contagem quantidade total");
+          console.log("Erro na contagem quantidade total");
           
       }
     )
@@ -103,7 +103,7 @@ export class DashboardComponent {
         console.log(data);
       }, 
       (err) => {
-        alert("Erro na contagem")
+        console.log("Erro na contagem")
       }
     )
 
@@ -113,7 +113,7 @@ export class DashboardComponent {
         console.log(data);
       }, 
       (err) => {
-        alert("Erro na contagem")
+        console.log("Erro na contagem")
       }
     )
 
@@ -123,7 +123,7 @@ export class DashboardComponent {
         console.log(data);
       }, 
       (err) => {
-        alert("Erro na contagem")
+        console.log("Erro na contagem")
       }
     )
 
